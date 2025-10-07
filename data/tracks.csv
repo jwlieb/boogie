@@ -1,0 +1,4 @@
+id,title,artist,tags,url,preview_url,bpm,has_vocals
+1,Lo-Fi Study Beat,BeatSmith,"lofi|chill|study|instrumental",https://example.com/lofi,https://example.com/lofi-preview.mp3,85,false
+2,Freestyle Fire,RapLord,"freestyle|fast|energetic|rap",https://example.com/rap,https://example.com/rap-preview.mp3,140,true
+3,Cat Comedy Song,MeowMix,"funny|cats|comedy|novelty",https://example.com/cats,https://example.com/cats-preview.mp3,110,true

@@ -1,0 +1,1 @@
+export const sharedUtility = 'This is a shared utility.';

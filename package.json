@@ -1,0 +1,23 @@
+{
+    "name": "boogie",
+    "private": true,
+    "packageManager": "pnpm@9.4.0",
+    "engines": {
+      "node": ">=22.5.0"
+    },
+    "workspaces": [
+      "apps/*",
+      "packages/*",
+      "scripts"
+    ],
+    "scripts": {
+      "dev": "pnpm --filter web dev",
+      "seed": "pnpm --filter scripts seed",
+      "typecheck": "tsc -b",
+      "build": "pnpm --filter ./packages/* build"
+    },
+    "devDependencies": {
+      "@types/node": "^22.5.4",
+      "typescript": "^5.6.2"
+    }
+  }

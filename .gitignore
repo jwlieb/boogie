@@ -1,0 +1,43 @@
+# Dependency folders
+node_modules/
+
+# pnpm ignores
+# pnpm-lock.yaml should be committed, as it locks dependency versions
+# pnpm's global store is outside the project and handled by pnpm
+.pnpm-store/
+.pnpm-state.json
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Next.js / Build output
+.next/
+out/
+dist/
+coverage/
+.turbo/
+.vercel/
+
+# TypeScript build artifacts
+*.tsbuildinfo
+*.d.ts.map
+*.d.ts
+
+# Other generated files
+*.log
+*.log.*
+*.tmp
+*.js
+
+# Operating system / Editor files
+.DS_Store
+.idea/
+.vscode/
+!.vscode/extensions.json
+.nvmrc
+
+# Data caches
+*.sqlite*
+seedcache.json
