@@ -2,5 +2,8 @@
     "name": "@boogie/embeddings",
     "version": "0.1.0",
     "main": "src/index.ts",
-    "private": true
+    "private": true,
+    "dependencies": {
+      "openai": "^4.0.0"
+    }
   }

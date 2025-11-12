@@ -31,9 +31,9 @@ That's the feeling I aim to provide here: programmatically serving up the songs 
 ## Architecture (Oct-2025)
 - **Frontend & API:** Next.js 15.x (App Router) with API routes (serverless on Vercel), Node **≥22**.
 - **Embeddings (provider toggle):** `EMBEDDINGS_PROVIDER=openai|voyage|cohere|google` (default OpenAI).
-- **Vector DB:** Qdrant Cloud (HNSW, cosine).
+- **Vector Backend:** boogie-vec Rust server (bruteforce/annoy, cosine similarity).
 - **Shared code:** Zod schemas + query parsing + scoring utils shared between API and scripts.
-- **Scripts:** `seed.ts` reads CSV → builds text → embeds → upserts to vector DB.
+- **Scripts:** `seed.ts` reads CSV → builds text → embeds → writes vectors.bin/ids.json → loads into boogie-vec backend.
 
 
 ## Data & licensing
@@ -57,8 +57,32 @@ That's the feeling I aim to provide here: programmatically serving up the songs 
 
 
 ## How to run (short)
+
+### Prerequisites
+1. Start the boogie-vec backend server (see boogie-vec repository for instructions)
+2. Ensure the backend is running on `http://127.0.0.1:8080` (or configure `BOOGIE_VEC_URL`)
+
+### Setup
 ```bash
+# Install dependencies
 pnpm i
-cp .env.example .env.local # fill keys for one provider + Qdrant
-pnpm seed # embed & upsert tracks from data/tracks.csv
-pnpm dev # http://localhost:3000
+
+# Copy environment file and fill in your API keys
+cp .env.example .env.local
+# Edit .env.local and add your OPENAI_API_KEY
+
+# Seed the vector index (generates vectors.bin, ids.json, and tracks.json)
+pnpm seed
+
+# Start the Next.js dev server
+pnpm dev
+# Open http://localhost:3000
+```
+
+### Environment Variables
+See `.env.example` for all available configuration options:
+- `EMBEDDINGS_PROVIDER`: Embedding provider (default: `openai`)
+- `OPENAI_API_KEY`: Your OpenAI API key (required for OpenAI provider)
+- `VECTOR_DIM`: Vector dimension (default: `384`)
+- `BOOGIE_VEC_URL`: boogie-vec backend URL (default: `http://127.0.0.1:8080`)
+- `AUTO_LOAD_INDEX`: Auto-load index after seeding (default: `true`)
